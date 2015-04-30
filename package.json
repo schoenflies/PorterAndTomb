@@ -4,7 +4,8 @@
   "description": "Virtual Pair Programming Space",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha spec/",
+    "lint": "jshint **.js"
   },
   "repository": {
     "type": "git",
@@ -25,5 +26,10 @@
   "dependencies": {
     "express": "^4.12.3",
     "socket.io": "^1.3.5"
+  },
+  "devDependencies": {
+    "chai": "^2.3.0",
+    "jshint": "^2.7.0",
+    "mocha": "^2.2.4"
   }
 }
