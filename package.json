@@ -1,0 +1,25 @@
+{
+  "name": "PorterAndTomb",
+  "version": "1.0.0",
+  "description": "Virtual Pair Programming Space",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PorterAndTomb/PorterAndTomb.git"
+  },
+  "keywords": [
+    "pair",
+    "programming",
+    "editor",
+    "3d"
+  ],
+  "author": "Cassandra Cruz <celkamada@gmail.com> (http://alicekamada.github.io)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PorterAndTomb/PorterAndTomb/issues"
+  },
+  "homepage": "https://github.com/PorterAndTomb/PorterAndTomb"
+}
