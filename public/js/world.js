@@ -13,7 +13,7 @@ document.body.appendChild( renderer.domElement ); //also can use $('body').appen
 
 //define cube geometry and material
 var cubeGeometry = new THREE.CubeGeometry(25, 200, 200);
-var cubeMaterial = new THREE.MeshLambertMaterial({ color: 0x1ec876 });
+var cubeMaterial = new THREE.MeshLambertMaterial({ color: 0x1ec876});
 
 var cubeMid = new THREE.Mesh(cubeGeometry, cubeMaterial);
 
@@ -34,7 +34,7 @@ scene.add(cubeRight);
 scene.add(cubeLeft);
 
 
-// plane
+// bottom plane
 var geometry = new THREE.PlaneGeometry( 2000, 2000, 300 );
 var material = new THREE.MeshBasicMaterial( {color: 0x220099, side: THREE.DoubleSide} );
 var plane = new THREE.Mesh( geometry, material );
@@ -52,6 +52,44 @@ var skybox = new THREE.Mesh(skyboxGeometry, skyboxMaterial);
  
 scene.add(skybox);
 
+/////////////EXPERIMENTS WITH DOM ELEMENT EMBEDDING//////////////////
+
+// create the dom Element
+// var element = document.createElement( 'img' );
+// element.src = 'ball.png';
+
+
+var element = document.createElement( 'div' );
+element.id = "editor";
+document.body.appendChild(element);
+
+var editor = ace.edit("editor");
+editor.setTheme("ace/theme/monokai");
+editor.getSession().setMode("ace/mode/javascript");
+
+// create the object3d for this element
+var cssObject = new THREE.CSS3DObject( element );
+// we reference the same position and rotation 
+cssObject.position = cubeMid.position;
+cssObject.rotation = cubeMid.rotation;
+// add it to the scene
+scene.add(cssObject);
+
+
+var cssRenderer = new THREE.CSS3DRenderer();
+cssRenderer.setSize( width, height );
+cssRenderer.domElement.style.position = 'absolute';
+cssRenderer.domElement.style.top = 0;
+document.body.appendChild( cssRenderer.domElement );
+
+var material   = new THREE.MeshBasicMaterial();
+material.color.set('black');
+material.opacity   = 0;
+material.blending  = THREE.NoBlending;
+// any mesh using this material will act as a see-thru to the css renderer
+
+/////////////////////////////////////////////////////////////////////
+
 //add lights
 var pointLight = new THREE.PointLight(0xffffff);
 pointLight.position.set(0, 300, 200);
@@ -65,14 +103,15 @@ camera.position.z = 500;
 camera.lookAt(cubeMid.position);
 
 
-var render = function () {
+var render = function() {
+  //render regular objects
     renderer.render(scene, camera);
 
-	// box.rotation.x += 0.1;
-	// box.rotation.y += 0.1;
+  //render css objects
+    cssRenderer.render(scene, camera);
 
     // requestAnimationFrame( render );
-	
 };
 
 render();
+
