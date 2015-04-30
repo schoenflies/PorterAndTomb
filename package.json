@@ -4,7 +4,7 @@
   "description": "Virtual Pair Programming Space",
   "main": "app.js",
   "scripts": {
-    "test": "mocha test/",
+    "test": "mocha spec/",
     "lint": "jshint **.js"
   },
   "repository": {
