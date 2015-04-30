@@ -18,11 +18,11 @@ var cubeMaterial = new THREE.MeshLambertMaterial({ color: 0x1ec876});
 var cubeMid = new THREE.Mesh(cubeGeometry, cubeMaterial);
 
 var cubeRight = new THREE.Mesh(cubeGeometry, cubeMaterial);
-cubeRight.position.x = 200;
+cubeRight.position.x = 340;
 cubeRight.position.z = 50;
 
 var cubeLeft = new THREE.Mesh(cubeGeometry, cubeMaterial);
-cubeLeft.position.x = -200;
+cubeLeft.position.x = -340;
 cubeLeft.position.z = 50;
  
 cubeMid.rotation.y = Math.PI * 90 / 180;
@@ -96,10 +96,10 @@ pointLight.position.set(0, 300, 200);
 scene.add(pointLight);
 
 //define camera 
-var camera = new THREE.PerspectiveCamera( 60, width/height, 0.1, 1000 );
+var camera = new THREE.PerspectiveCamera( 90, width/height, 0.1, 1000 );
 camera.position.x = 0;
-camera.position.y = 50;
-camera.position.z = 500;
+camera.position.y = 0;
+camera.position.z = 350;
 camera.lookAt(cubeMid.position);
 
 
