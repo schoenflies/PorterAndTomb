@@ -1,7 +1,6 @@
 body {
   margin: 0;
   font-family: Monospace;
-
 }
 
 canvas {
@@ -14,25 +13,5 @@ canvas {
 }
 
 #editor {
-    /*position: absolute;*/
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
 
-      position: absolute;
-  -webkit-transform-style: preserve-3d;
-  -webkit-transform: translate3d(-50%, -50%, 0px) scale3d(1, -1, 1) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 125, -125, 100, 1);
-
-    /*-webkit-transform-style: preserve-3d;*/
-
-   /* width:  50vw;
-    height: 40vw;
-
-
-
-    font-family: "Lucida Console", Monaco, monospace;*/
 }
-
-/*.ace_editor p, .ace_editor div { font-family: 'Monaco', 'Menlo', 'Droid Sans Mono', 'Courier New', monospace !important;}*/
-

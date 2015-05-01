@@ -1,5 +1,5 @@
 
-var camera, scene, renderer, controls;
+var camera, cssScene, renderer, controls, glrenderer;
 
 init();
 animate();
@@ -9,14 +9,20 @@ function init() {
   camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1000 );
   camera.position.set( 200, 200, 200 );
 
-  scene = new THREE.Scene();
+  cssScene = new THREE.Scene();
+
+  // Dom element rendering
+  var editorDiv = document.createElement( 'textarea' );
+  editorDiv.id = 'editor';
+
+  // adding click listener
+  editorDiv.addEventListener('click', function() {
+    editorDiv.focus();
+  });
 
 
-  var editor = document.createElement( 'textarea' );
-
-  var cssObject = new THREE.CSS3DObject( editor );
-  cssObject.position = {x: 0, y: 0, z: 0};
-  scene.add(cssObject);
+  var cssObject = new THREE.CSS3DObject( editorDiv );
+  cssScene.add(cssObject);
 
   renderer = new THREE.CSS3DRenderer();
   renderer.setSize( window.innerWidth, window.innerHeight );
@@ -27,16 +33,13 @@ function init() {
   camera.lookAt(cssObject.position);
 
   //attach controls to canvas element
-  var controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls = new THREE.OrbitControls(camera, renderer.domElement);
 }
 
 function animate() {
-
   requestAnimationFrame( animate );
-
-  renderer.render( scene, camera );
+  renderer.render( cssScene, camera );
 
   //controls update data
   controls.update();
-
 }

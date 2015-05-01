@@ -107,12 +107,12 @@ camera.lookAt(cssObject.position);
 // // var editor = ace.edit("editor");
 // // editor.setTheme("ace/theme/monokai");
 // // editor.getSession().setMode("ace/mode/javascript");
-
 // // setup codemirror
 // // var myCodeMirror = CodeMirror(element, {
 // //   value: "function myScript(){return 100;}\n",
 // //   mode:  "javascript"
 // // });
+
 
 // // create the object3d for this element
 // var cssObject = new THREE.CSS3DObject( element );
