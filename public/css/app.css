@@ -1,5 +1,6 @@
 body { 
   margin: 0; 
+
 }
 
 canvas { 
@@ -17,8 +18,12 @@ canvas {
     right: 0;
     bottom: 0;
     left: 0;
-/*    height:200px;*/
-    width: 500px;
-    height:600px;
+
+    width:  50vw;
+    height: 40vw;
+
+    /*font-family: "Lucida Console", Monaco, monospace;*/
 }
+
+.ace_editor p, .ace_editor div { font-family: 'Monaco', 'Menlo', 'Droid Sans Mono', 'Courier New', monospace !important;}
 
