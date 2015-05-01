@@ -20,6 +20,7 @@ io.on('connection', function(socket) {
   socket.on('join room', function(data) {
     socket.room = data.roomname;
     socket.username = data.username;
+    if (rooms[socket.room] === undefined) rooms[socket.room] = {};
     rooms[socket.room][socket.username] = true;
     socket.emit('room list', rooms);
   });
