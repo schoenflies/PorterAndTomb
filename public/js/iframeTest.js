@@ -13,7 +13,7 @@ function init() {
 
 
   var element = document.createElement( 'iframe' );
-  element.src = './editor.html';
+  element.src = './ace.html';
   element.style.width = "60vw";
   element.style.height = "60vh";
 
