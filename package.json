@@ -31,6 +31,15 @@
   "devDependencies": {
     "chai": "^2.3.0",
     "jshint": "^2.7.0",
-    "mocha": "^2.2.4"
+    "mocha": "^2.2.4",
+    "bcrypt-nodejs": "0.0.3",
+    "bluebird": "1.0.8",
+    "body-parser": "^1.5.2",
+    "bookshelf": "~0.6.4",
+    "forever": "^0.10.11",
+    "knex": "~0.5.7",
+    "nodemon": "^1.2.1",
+    "request": "^2.34.0",
+    "sqlite3": "~3.0.5"
   }
 }
