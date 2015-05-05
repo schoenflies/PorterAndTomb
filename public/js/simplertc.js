@@ -3,13 +3,14 @@ var webrtc = new SimpleWebRTC({
     // the id/element dom element that will hold "our" video
     localVideoEl: 'localVideo',
     // the id/element dom element that will hold remote videos
+    remoteVideosEl: 'remoteVideos',
     autoRequestMedia: true,
-    media: {audio: true, video:false},
+    //media: {audio: true, video:false},
     // dont negotiate media
     receiveMedia: {
         mandatory: {
             OfferToReceiveAudio: true,
-            OfferToReceiveVideo: false
+            OfferToReceiveVideo: true
         }
     }
 });
@@ -20,3 +21,4 @@ webrtc.on('readyToCall', function () {
     webrtc.joinRoom('your awesome room name');
 });
 };
+
