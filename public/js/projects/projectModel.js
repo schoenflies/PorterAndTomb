@@ -1,74 +1,59 @@
 var mongoose = require('mongoose');
-// var Promise = require('bluebird');
+var File = require('../files/fileModel.js');
 
 var projectSchema = mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    unique: true
-  },
-
-  file_ids: {
-    type: String,
-    required: true
-  },
-
+  name: String
 });
 
 var Project = mongoose.model('projects', projectSchema);
 
-// User.prototype.createUser = function (params, callback){
-//   // console.log('PARAMS FROM USER.MODEL.createUser'+JSON.stringify(params));
-//   bcrypt.hash(params.password, null, null, function(err, hash){
-//     if(hash) {
-//       var newUser = new User({
-//         username: params.username,
-//         hashword: hash,
-//         following: params.following
-//       });
+Project.prototype.createProject = function(name, callback) {
+  console.log(name);
 
-//       newUser.save(function(err,results){
-//         // console.log("mongoose.save: ", err, results);
-//         callback(err, results);
-//       });  
-//     } else {
-//       callback(err);
-//     }
-//   });
-// };
+  var newProject = new Project({
+    name: name,
+  });
 
-// User.prototype.signin = function (username, password, callback){
-//   //find if user exists
-//   User.findOne({'username':username},function(err,user){
-//     //if exists, compare password
-//     // console.log(err, JSON.stringify(user));
-//     if(user){
-//       //if correct, return following
-//       bcrypt.compare(password, user.hashword, function(err, res) {
-//         if (res) {
-//           callback(null, user.following);  
-//         } else {
-//           //if not correct, do stuff w/ error
-//           callback('Incorrect password', null);  
-//         }
-//       });
-//     } else {
-//       //if not correct, do stuff w/ error
-//       callback('Username not found', null);
-//     }
-//   });  
-// };
+  newProject.save(function(err, results) {
+    callback(err, results);
+  });
 
-// User.prototype.updateFollowing = function (username, following, callback){
-//   // console.log(username, following);
+};
 
-//   //Look up user entry with 
-//   User.findOne({username: username}, function(err, user) {
-//     // console.log("updateFollowing: ", err, user);
-//     user.following = following;
-//     user.save();
-//     callback(err);
-//   });
-// };
+Project.prototype.fetchProject = function(projectId, callback) {
+  //find project
+  Project.findOne({ _id: projectId }, function(err, project) {
+
+    if (!err) {
+
+      //find files with projectId
+      var fileMap = [];
+      File.find({}, function(err, files) {
+        if (!err) {
+          files.forEach(function(file) {
+            if (String(file.project_id) === String(projectId)) {
+              fileMap.push({
+                _id: file._id,
+                name: file.name,
+                path: file.path
+              });
+            }
+          })
+        }
+
+        //create project object to send to client
+        var projectMap = {
+          _id: project._id,
+          name: project.name,
+          files: fileMap
+        }
+        callback(err,projectMap);
+      }) 
+    } else {
+      callback(err);
+    }
+  });
+
+};
 
 module.exports = Project;

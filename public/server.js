@@ -31,7 +31,7 @@ var projectRouter = express.Router();
 require('./js/projects/projectRoutes.js')(app, projectRouter);
 
 var fileRouter = express.Router();
-require('./js/files/fileRoutes.js')(app, projectRouter);
+require('./js/files/fileRoutes.js')(app, fileRouter);
 
 //Establish routes
 app.use('/api/projects', projectRouter);
