@@ -1,27 +1,48 @@
-// silly chrome wants SSL to do screensharing
-var fs = require('fs'),
-    express = require('express'),
-    https = require('https'),
-    http = require('http'),
-    path = require('path');
-
-// var privateKey = fs.readFileSync('fakekeys/privatekey.pem').toString(),
-//     certificate = fs.readFileSync('fakekeys/certificate.pem').toString();
-
+var express = require('express'),
+  path = require('path'),
+  mongoose = require('mongoose'),
+  bodyParser = require('body-parser');
 
 var app = express();
 
-app.use(express.static(__dirname));
+// app.use(express.static(__dirname));
 
-// https.createServer({key: privateKey, cert: certificate}, app).listen(8000);
-http.createServer(app).listen(8000);
+var uristring =
+  process.env.MONGOLAB_URI ||
+  process.env.MONGOHQ_URL ||
+  'mongodb://localhost/pt';
 
-app.get('/', function(req, res){
-  res.sendFile(path.join(__dirname+'/index.html'));
+mongoose.connect(uristring, {}, function(err, res) {
+  if (err) {
+    console.log('ERROR connecting to: ' + uristring + '. ' + err);
+  } else {
+    console.log('Succeeded connected to: ' + uristring);
+  }
 });
 
-app.get('/editor', function(req, res){
-  res.sendFile(path.join(__dirname+'/editor.html'));
+//Mount body-parser middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
+
+//Implement routers
+var projectRouter = express.Router();
+require('./js/projects/projectRoutes.js')(app, projectRouter);
+
+var fileRouter = express.Router();
+require('./js/files/fileRoutes.js')(app, projectRouter);
+
+//Establish routes
+app.use('/api/projects', projectRouter);
+app.use('/api/files', fileRouter);
+
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-console.log('running on http://localhost:8000');
+
+app.listen(4000, function(){
+  console.log("Listening on 4000");
+});
+// console.log('running on http://localhost:8000');
