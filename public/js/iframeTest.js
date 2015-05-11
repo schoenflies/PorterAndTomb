@@ -11,9 +11,15 @@ function init() {
 
   cssScene = new THREE.Scene();
 
-
+  // instead of embedding the editor into the 3d world directly, we are embedding an iframe into the world.
+  // this gives us the flexibility to have more than just editors on virtual screens. iframes are also the only way 
+  // we could come up with to fix the cursor drift bug. 
   var element = document.createElement( 'iframe' );
+
+  // Here we point the iframe to the ace.html page, which is just a text editor.
+  // At some point the html files that we point iframes to need to be dynamically created to support multiple files and workspaces.
   element.src = './ace.html';
+
   element.style.width = "60vw";
   element.style.height = "60vh";
 
@@ -30,7 +36,7 @@ function init() {
 
   camera.lookAt(cssObject.position);
 
-  //attach controls to canvas element
+  // attach controls to canvas element
   controls = new THREE.OrbitControls(camera, renderer.domElement);
 }
 
@@ -38,6 +44,6 @@ function animate() {
   requestAnimationFrame( animate );
   renderer.render( cssScene, camera );
 
-  //controls update data
+  // controls update data
   controls.update();
 }
