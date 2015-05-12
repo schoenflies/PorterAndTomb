@@ -40,15 +40,18 @@
 <div id="firepad-container"></div>
     
 <script>
+    //Initiate firebase instance
     var firepadRef = new Firebase('https://amber-torch-5138.firebaseio.com');
 
-
+    //Initiate ace editor instance
     var editor = ace.edit("firepad-container");
     editor.setTheme("ace/theme/monokai");
     editor.getSession().setMode("ace/mode/javascript");
 
+    //Initiate firepad instance
     var firepad = Firepad.fromACE(firepadRef, editor);
-
+    
+    //Initiate firepad with contents if empty
     function init() {
 
         //// Initialize contents.

@@ -5,7 +5,6 @@ var webrtc = new SimpleWebRTC({
     // the id/element dom element that will hold remote videos
     remoteVideosEl: 'remoteVideos',
     autoRequestMedia: true,
-    //media: {audio: true, video:false},
     // dont negotiate media
     receiveMedia: {
         mandatory: {

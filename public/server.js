@@ -1,27 +1,30 @@
-// silly chrome wants SSL to do screensharing
+/**
+ * @file Backend server for api endpoints
+ *
+ * @param {Object} fs [node fs module]
+ * @param {Object} express [node express module]
+ * @param {Object} http [node http module]
+ * @param {Object} path [node path module]
+ */
+
 var fs = require('fs'),
     express = require('express'),
-    https = require('https'),
     http = require('http'),
     path = require('path');
 
-// var privateKey = fs.readFileSync('fakekeys/privatekey.pem').toString(),
-//     certificate = fs.readFileSync('fakekeys/certificate.pem').toString();
-
-
+//Instantiate express instance
 var app = express();
 
+//Mount static directory middleware
 app.use(express.static(__dirname));
 
-// https.createServer({key: privateKey, cert: certificate}, app).listen(8000);
+//Create server
 http.createServer(app).listen(8000);
 
+//API for serving index.html when page initially loads
 app.get('/', function(req, res){
   res.sendFile(path.join(__dirname+'/index.html'));
 });
 
-app.get('/editor', function(req, res){
-  res.sendFile(path.join(__dirname+'/editor.html'));
-});
 
-console.log('running on http://localhost:8000');
+
