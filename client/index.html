@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+  <head>
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/font-awesome.min.css">
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/controllers/UsersCtrl.js"></script>
+    <script src="app/controllers/appRoutes.js"></script>
+
+    <meta charset="utf-8" />
+    <title></title>
+  </head>
+  <body ng-app="myApp" ng-controller="MainController">
+    <!-- the ng-view directive is where our templates will be loaded into when navigated to -->
+    <div ui-view></div>
+
+  </body>
+</html>
