@@ -1,0 +1,18 @@
+{
+  "name": "kangaroo",
+  "version": "0.0.0",
+  "description": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/lib"
+  ],
+  "dependencies": {
+    "angular": "~1.2.18",
+    "angular-bootstrap": "~0.11.0",
+    "font-awesome": ">=4.1.0",
+    "angular-ui-router": "~0.2.10",
+    "bootstrap": "~3.3.4"
+  }
+}
